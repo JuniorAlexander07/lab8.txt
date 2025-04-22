@@ -1,0 +1,30 @@
+Descargar y ejecutar Portainer:
+docker pull portainer/portainer-ce
+
+para revisar si la imagen se descargo:
+docker images
+
+ejecutar:
+docker run -d --name portainer \
+
+-p 9000:9000 \
+-v /var/run/docker.sock:/var/run/docker.sock \
+-v portainer_data:/data \
+portainer/portainer-ce
+
+vamos al navegador fire fox y accedemos a la interfaz web
+127.0.0.1:9000 
+
+Debería de entrar a portainer que es una interfaz web para administrar docker desde una interfaz grafica
+
+Te pedirá que cree una contraseña y usuario y luego accedemos
+
+Luego vamos a abrir otra pestaña y buscar lo siguiente en la búsqueda del navegador como url
+127.0.0.1:8888                es nuestra pagina web de la practica anterior
+
+
+Detener el contenedor de NGINX desde Portainer:
+Volvemos a portainer y hacemos lo siguiente:
+
+ En la interfaz: Containers > my-nginx > Stop
+Verifica que http://127.0.0.1:8888 ya no funcione refrescando la pagina.
