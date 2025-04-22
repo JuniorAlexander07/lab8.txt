@@ -5,7 +5,10 @@ sudo apt install -y docker.io
 
 agregar nuestro usuario al grupo de docker
 sudo usermod -aG docker ${USER}
+
+para logearnos
 su - ${USER}
+nos pide contraseña, ponemos la contraseña de nuestra maquina virtual
 
 vamos a instalar la imagen de nginx:
 docker pull nginx:latest
@@ -13,30 +16,30 @@ docker pull nginx:latest
 para ver las imágenes:
 docker images
 
-# 2. Ahora vamos a Crear un directorio y  una página HTML
+Ahora vamos a Crear un directorio y  una página HTML
 sudo mkdir -p /home/website
 cd /home/website
 sudo nano index.html
 
-
 <html>
 <body>
-<h1> Nombre:  </h1>
-<h2> Matricula:  </h2>
+<h1> Nombre: Junior Alexander </h1>
+<h2> Matricula: 2024-1164 </h2>
 </body>
 </html>
  Guardar y salir
 
-Para correrlo en segundo plano:
-
+Vamos a ser que el contenedor nginx corra:
 docker run -d \
 --name mi-nginx \
 -p 8888:80 \
 -v /home/website:/usr/share/nginx/html \
-nginx
+Nginx
 
 Verificamos si esta corriendo:
 docker ps -a
 
-# 3. Verificar en el navegador
+Verificar en el navegador
 127.0.0.1:8888
+
+Debería de salir nuestra pagina web
