@@ -1,0 +1,72 @@
+Instalar Docker Compose (si no está instalado)
+sudo apt install docker-compose
+
+vamos a crear un directorio y acceder a el:
+mkdir compose
+cd compose
+
+después vamos a Crear docker-compose.yml con:
+sudo nano docker-compose.yml
+
+pegar lo siguiente:
+
+version: '3.8'
+
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wpuser
+      MYSQL_PASSWORD: wppass
+
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress:latest
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wpuser
+      WORDPRESS_DB_PASSWORD: wppass
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - wp_data:/var/www/html
+
+volumes:
+  db_data:
+  wp_data:
+
+guardar y salir
+
+ahora vamos a Iniciar los contenedores
+sudo docker-compose up -d
+
+se abrirá un proceso de instalación, déjenlo que se descargue todo.
+
+Ya una vez todo instalado, verificamos que este corriendo con:
+docker ps -a
+
+Accede a al navegador fire fox y pon lo siguiente
+http://127.0.0.1:8080 
+
+Configurar WordPress:
+Titulo del sitio: Wordpress
+Nombre de usuario: admin
+Contraseña: Alex_4760*-
+Correo electrónico: alexander073346@gmail.com
+
+Y ahora le damos a instalar wordpres que esta el botón justo abajo 
+
+Nos dira un mensaje diciendo “lo lograste”
+Le damos a acceder
+
+Y nos pedirá usuario y contraseña de lo que pusimos anteriormente:
+Nombre de usuario: admin
+Contraseña: Alex_4760*-
+
+Y una vez dentro ya eso es todo lo que hay que hacer.
